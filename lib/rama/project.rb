@@ -46,7 +46,8 @@ module Rama
     end
 
     def create_gitignore_file
-      FileUtils.cp('resource/_.gitignore', "#{@directory}/.gitignore")
+      resource_path = File.expand_path('../../resource', __dir__)
+      FileUtils.cp("#{resource_path}/_.gitignore", "#{@directory}/.gitignore")
     end
 
     def create_module_file
