@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require './test/test_helper'
 require 'minitest/autorun'
 require 'rama/project'
 
