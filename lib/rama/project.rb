@@ -2,7 +2,7 @@
 
 module Rama
   class Project
-    def initialize(name, options)
+    def initialize(name, options = [])
       @name = name
       @options = options
     end
