@@ -30,15 +30,19 @@ class ProjectTest < Minitest::Test
   end
 
   def expected_gemfile_content
-    "# frozen_string_literal: true\n" \
-    "\n" \
-    "source 'https://rubygems.org'\n"
+    <<~GEMFILE
+      # frozen_string_literal: true
+
+      source 'https://rubygems.org'
+    GEMFILE
   end
 
   def expected_module_content
-    "# frozen_string_literal: true\n" \
-    "\n" \
-    "module MyProject\n" \
-    "end\n"
+    <<~MODULE
+      # frozen_string_literal: true
+
+      module MyProject
+      end
+    MODULE
   end
 end

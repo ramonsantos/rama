@@ -41,8 +41,11 @@ module Rama
     end
 
     def gemfile_content
-      "# frozen_string_literal: true\n\n" \
-      "source 'https://rubygems.org'\n"
+      <<~GEMFILE
+        # frozen_string_literal: true
+
+        source 'https://rubygems.org'
+      GEMFILE
     end
 
     def create_gitignore_file
@@ -55,13 +58,16 @@ module Rama
     end
 
     def module_file_content
-      "# frozen_string_literal: true\n\n" \
-      "module #{module_name}\n" \
-      "end\n"
+      <<~MODULE
+        # frozen_string_literal: true
+
+        module #{module_name}
+        end
+      MODULE
     end
 
     def module_name
-      @name.downcase.split('_').map!(&:capitalize).join
+      @module_name ||= @name.downcase.split('_').map!(&:capitalize).join
     end
   end
 end
