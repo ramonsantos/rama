@@ -19,9 +19,12 @@ module Rama
       create_project_directory
       create_lib_directory
       create_sources_directory
+      create_test_directory
       create_gemfile_file
+      create_rakefile_file
       create_gitignore_file
       create_module_file
+      create_test_file
     end
 
     def create_project_directory
@@ -30,6 +33,10 @@ module Rama
 
     def create_lib_directory
       FileUtils.mkdir_p("#{@directory}/lib")
+    end
+
+    def create_test_directory
+      FileUtils.mkdir_p("#{@directory}/test")
     end
 
     def create_sources_directory
@@ -41,11 +48,31 @@ module Rama
     end
 
     def gemfile_content
-      <<~GEMFILE
+      <<~CONTENT
         # frozen_string_literal: true
 
         source 'https://rubygems.org'
-      GEMFILE
+
+        gem 'minitest'
+      CONTENT
+    end
+
+    def create_rakefile_file
+      File.write("#{@directory}/Rakefile", rakefile_content)
+    end
+
+    def rakefile_content
+      <<~CONTENT
+        # frozen_string_literal: true
+
+        require 'rake/testtask'
+
+        Rake::TestTask.new do |t|
+          t.libs.push('lib')
+          t.verbose = true
+          t.test_files = FileList['test/*_test.rb']
+        end
+      CONTENT
     end
 
     def create_gitignore_file
@@ -58,12 +85,36 @@ module Rama
     end
 
     def module_file_content
-      <<~MODULE
+      <<~CONTENT
         # frozen_string_literal: true
 
         module #{module_name}
+          class << self
+            def main
+              :ok
+            end
+          end
         end
-      MODULE
+      CONTENT
+    end
+
+    def create_test_file
+      File.write("#{@directory}/test/#{@name}_test.rb", test_file_content)
+    end
+
+    def test_file_content
+      <<~CONTENT
+        # frozen_string_literal: true
+
+        require 'minitest/autorun'
+        require '#{@name}'
+
+        class #{module_name}Test < Minitest::Test
+          def test_main
+            assert_equal(#{module_name}.main, :ok)
+          end
+        end
+      CONTENT
     end
 
     def module_name
