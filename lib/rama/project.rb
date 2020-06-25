@@ -25,6 +25,7 @@ module Rama
       create_gitignore_file
       create_module_file
       create_test_file
+      create_readme_file
     end
 
     def create_project_directory
@@ -114,6 +115,30 @@ module Rama
             assert_equal(#{module_name}.main, :ok)
           end
         end
+      CONTENT
+    end
+
+    def create_readme_file
+      File.write("#{@directory}/README.md", readme_file_content)
+    end
+
+    def readme_file_content
+      <<~CONTENT
+        # #{@name}
+
+        ## Getting Started
+
+        ### Install Dependencies
+
+        ``` bash
+        bundle install
+        ```
+
+        ### Run Tests
+
+        ``` bash
+        rake test
+        ```
       CONTENT
     end
 

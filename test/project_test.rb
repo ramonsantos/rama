@@ -24,6 +24,7 @@ class ProjectTest < Minitest::Test
     assert(Dir.exist?('my_project/lib/my_project'))
     assert(File.exist?('my_project/Gemfile'))
     assert(File.exist?('my_project/Rakefile'))
+    assert(File.exist?('my_project/README.md'))
 
     assert(File.exist?('my_project/.gitignore'))
     assert(File.exist?('my_project/lib/my_project.rb'))
@@ -33,6 +34,7 @@ class ProjectTest < Minitest::Test
     assert_equal(File.read('my_project/Rakefile'), expected_rakefile_content)
     assert_equal(File.read('my_project/lib/my_project.rb'), expected_module_content)
     assert_equal(File.read('my_project/test/my_project_test.rb'), expected_test_content)
+    assert_equal(File.read('my_project/README.md'), expected_readem_content)
   end
 
   def expected_gemfile_content
@@ -85,6 +87,26 @@ class ProjectTest < Minitest::Test
         t.verbose = true
         t.test_files = FileList['test/*_test.rb']
       end
+    CONTENT
+  end
+
+  def expected_readem_content
+    <<~CONTENT
+      # my_project
+
+      ## Getting Started
+
+      ### Install Dependencies
+
+      ``` bash
+      bundle install
+      ```
+
+      ### Run Tests
+
+      ``` bash
+      rake test
+      ```
     CONTENT
   end
 end
