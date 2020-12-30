@@ -1,43 +1,14 @@
 # frozen_string_literal: true
 
-require './test/test_helper'
-require 'minitest/autorun'
+require_relative 'support/test_helper'
 require 'rama/project'
 
-class ProjectTest < Minitest::Test
-  def setup
-    @temp_dir = 'my_project'
-  end
+describe Rama::Project do
+  subject { Rama::Project.new(temp_dir) }
 
-  def teardown
-    FileUtils.rm_rf(@temp_dir)
-  end
+  let(:temp_dir) { 'my_project' }
 
-  def test_create_project
-    project = Rama::Project.new('my_project')
-
-    assert_output(/Creating project my_project/) { project.create }
-
-    assert(Dir.exist?('my_project/'))
-    assert(Dir.exist?('my_project/lib'))
-    assert(Dir.exist?('my_project/test'))
-    assert(Dir.exist?('my_project/lib/my_project'))
-    assert(File.exist?('my_project/Gemfile'))
-    assert(File.exist?('my_project/Rakefile'))
-    assert(File.exist?('my_project/README.md'))
-
-    assert(File.exist?('my_project/.gitignore'))
-    assert(File.exist?('my_project/lib/my_project.rb'))
-    assert(File.exist?('my_project/test/my_project_test.rb'))
-
-    assert_equal(File.read('my_project/Gemfile'), expected_gemfile_content)
-    assert_equal(File.read('my_project/Rakefile'), expected_rakefile_content)
-    assert_equal(File.read('my_project/lib/my_project.rb'), expected_module_content)
-    assert_equal(File.read('my_project/test/my_project_test.rb'), expected_test_content)
-    assert_equal(File.read('my_project/README.md'), expected_readem_content)
-  end
-
-  def expected_gemfile_content
+  let(:expected_gemfile_content) do
     <<~GEMFILE
       # frozen_string_literal: true
 
@@ -47,7 +18,7 @@ class ProjectTest < Minitest::Test
     GEMFILE
   end
 
-  def expected_module_content
+  let(:expected_module_content) do
     <<~MODULE
       # frozen_string_literal: true
 
@@ -61,7 +32,7 @@ class ProjectTest < Minitest::Test
     MODULE
   end
 
-  def expected_test_content
+  let(:expected_test_content) do
     <<~CONTENT
       # frozen_string_literal: true
 
@@ -76,7 +47,7 @@ class ProjectTest < Minitest::Test
     CONTENT
   end
 
-  def expected_rakefile_content
+  let(:expected_rakefile_content) do
     <<~CONTENT
       # frozen_string_literal: true
 
@@ -90,7 +61,7 @@ class ProjectTest < Minitest::Test
     CONTENT
   end
 
-  def expected_readem_content
+  let(:expected_readem_content) do
     <<~CONTENT
       # my_project
 
@@ -108,5 +79,30 @@ class ProjectTest < Minitest::Test
       rake test
       ```
     CONTENT
+  end
+
+  after { FileUtils.rm_rf(temp_dir) }
+
+  describe '#create' do
+    it do
+      expect { subject.create }.must_output(/Creating project my_project/)
+
+      expect(Dir.exist?('my_project/')).must_equal(true)
+      expect(Dir.exist?('my_project/lib')).must_equal(true)
+      expect(Dir.exist?('my_project/test')).must_equal(true)
+      expect(Dir.exist?('my_project/lib/my_project')).must_equal(true)
+      expect(File.exist?('my_project/Gemfile')).must_equal(true)
+      expect(File.exist?('my_project/Rakefile')).must_equal(true)
+      expect(File.exist?('my_project/README.md')).must_equal(true)
+      expect(File.exist?('my_project/.gitignore')).must_equal(true)
+      expect(File.exist?('my_project/lib/my_project.rb')).must_equal(true)
+      expect(File.exist?('my_project/test/my_project_test.rb')).must_equal(true)
+
+      expect(File.read('my_project/Gemfile')).must_equal(expected_gemfile_content)
+      expect(File.read('my_project/Rakefile')).must_equal(expected_rakefile_content)
+      expect(File.read('my_project/lib/my_project.rb')).must_equal(expected_module_content)
+      expect(File.read('my_project/test/my_project_test.rb')).must_equal(expected_test_content)
+      expect(File.read('my_project/README.md')).must_equal(expected_readem_content)
+    end
   end
 end
