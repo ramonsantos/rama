@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Ruby project generator.'
   spec.description   = 'Ruby project generator.'
   spec.homepage      = 'https://github.com/ramonsantos/rama'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.5.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/ramonsantos/rama'
