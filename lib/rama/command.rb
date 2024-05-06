@@ -13,7 +13,7 @@ module Rama
     def execute
       do_execute
     rescue StandardError
-      abort('Please use --help option for a listing of valid options')
+      abort('Please use --help option for more usage information')
     end
 
     private
@@ -47,7 +47,7 @@ module Rama
     end
 
     def help
-      puts 'Usage: rama init PROJECT_NAME [options]'
+      puts 'Usage: rama init PROJECT_NAME'
     end
   end
 end

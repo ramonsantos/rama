@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Ruby project generator.'
   spec.description   = 'Ruby project generator.'
   spec.homepage      = 'https://github.com/ramonsantos/rama'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/ramonsantos/rama'
@@ -28,9 +28,4 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
-
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'simplecov'
 end
