@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'fileutils'
+
 module Rama
   class Project
     def initialize(name, options = [])

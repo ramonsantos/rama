@@ -43,7 +43,7 @@ module Rama
     end
 
     def help?
-      args.count == 1 && ['-h', '--help'].include?(args[0])
+      args.one? && ['-h', '--help'].include?(args[0])
     end
 
     def help

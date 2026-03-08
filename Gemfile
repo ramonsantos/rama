@@ -6,6 +6,8 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'minitest', '~> 5.22', '>= 5.22.3'
+gem 'ostruct'
+gem 'pry'
 gem 'rake', '~> 12.0'
 gem 'rubocop', '~> 1.63', '>= 1.63.4'
 gem 'rubocop-minitest', '~> 0.35.0'
