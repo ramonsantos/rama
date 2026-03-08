@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/rama.svg)](https://badge.fury.io/rb/rama)
 ![ruby](https://img.shields.io/badge/ruby-4.0.0-dc143c)
+[![Licença: GPL v3](https://img.shields.io/badge/Licença-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Rama is a simple Ruby project generator that helps you quickly scaffold new Ruby projects with a basic structure, including tests and configuration files.
 
@@ -63,5 +64,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/ramons
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
+The gem is available as open source under the terms of the [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.txt).
