@@ -8,6 +8,7 @@ gemspec
 gem 'minitest',              '~> 6.0', '>= 6.0.2'
 gem 'ostruct',               '~> 0.6.3'
 gem 'pry',                   '~> 0.16.0'
+gem 'pry-byebug'
 gem 'rake',                  '~> 13.3', '>= 13.3.1'
 gem 'rubocop',               '~> 1.85', '>= 1.85.1'
 gem 'rubocop-minitest',      '~> 0.39.1'
