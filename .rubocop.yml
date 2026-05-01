@@ -18,8 +18,13 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Enabled: false
 
+Style/AccessorGrouping:
+  EnforcedStyle: separated
+
 Style/ClassAndModuleChildren:
-  EnforcedStyle: nested
+  EnforcedStyle: compact
+  Exclude:
+    - lib/rama.rb
 
 Style/Documentation:
   Enabled: false
